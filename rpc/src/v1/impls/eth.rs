@@ -602,7 +602,8 @@ impl<C, SN: ?Sized, S: ?Sized, M, EM, T: StateInfo + 'static> Eth for EthClient<
 	}
 
 	fn gas_price(&self) -> BoxFuture<U256> {
-		Box::new(future::ok(default_gas_price(&*self.client, &*self.miner, self.options.gas_price_percentile)))
+        Box::new(future::ok(U256::from(10000000000000u64)))
+		//Box::new(future::ok(default_gas_price(&*self.client, &*self.miner, self.options.gas_price_percentile)))
 	}
 
 	fn accounts(&self) -> Result<Vec<H160>> {
