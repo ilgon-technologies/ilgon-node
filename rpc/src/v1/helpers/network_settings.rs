@@ -41,7 +41,7 @@ impl Default for NetworkSettings {
 			name: "".into(),
 			chain: "foundation".into(),
 			is_dev_chain: false,
-			network_port: 30303,
+			network_port: 60606,
 			rpc_enabled: true,
 			rpc_interface: "127.0.0.1".into(),
 			rpc_port: 8545

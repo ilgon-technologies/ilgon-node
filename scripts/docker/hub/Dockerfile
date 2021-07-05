@@ -43,6 +43,6 @@ USER openethereum
 # check if executable works in this container
 RUN openethereum --version
 
-EXPOSE 5001 8080 8082 8083 8545 8546 8180 30303/tcp 30303/udp
+EXPOSE 5001 8080 8082 8083 8545 8546 8180 60606/tcp 60606/udp
 
 ENTRYPOINT ["/bin/openethereum"]

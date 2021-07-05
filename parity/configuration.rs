@@ -1513,7 +1513,7 @@ mod tests {
 			name: "testname".to_owned(),
 			chain: "goerli".to_owned(),
 			is_dev_chain: false,
-			network_port: 30303,
+			network_port: 60606,
 			rpc_enabled: true,
 			rpc_interface: "127.0.0.1".to_owned(),
 			rpc_port: 8545,
@@ -1632,7 +1632,7 @@ mod tests {
 	fn should_ignore_comments_in_reserved_peers() {
 		let tempdir = TempDir::new().unwrap();
 		let filename = tempdir.path().join("peers_comments");
-		File::create(&filename).unwrap().write_all(b"# Sample comment\nenode://6f8a80d14311c39f35f516fa664deaaaa13e85b2f7493f37f6144d86991ec012937307647bd3b9a82abe2974e1407241d54947bbb39763a4cac9f77166ad92a0@172.0.0.1:30303\n").unwrap();
+		File::create(&filename).unwrap().write_all(b"# Sample comment\nenode://6f8a80d14311c39f35f516fa664deaaaa13e85b2f7493f37f6144d86991ec012937307647bd3b9a82abe2974e1407241d54947bbb39763a4cac9f77166ad92a0@172.0.0.1:60606\n").unwrap();
 		let args = vec!["parity", "--reserved-peers", filename.to_str().unwrap()];
 		let conf = Configuration::parse_cli(&args).unwrap();
 		let reserved_nodes = conf.init_reserved_nodes();
@@ -1763,8 +1763,8 @@ mod tests {
 		let conf1 = parse(&["parity", "--ports-shift", "1", "--jsonrpc-port", "8544"]);
 
 		// then
-		assert_eq!(conf0.net_addresses().unwrap().0.port(), 30304);
-		assert_eq!(conf0.network_settings().unwrap().network_port, 30304);
+		assert_eq!(conf0.net_addresses().unwrap().0.port(), 60607);
+		assert_eq!(conf0.network_settings().unwrap().network_port, 60607);
 		assert_eq!(conf0.network_settings().unwrap().rpc_port, 8546);
 		assert_eq!(conf0.http_config().unwrap().port, 8546);
 		assert_eq!(conf0.ws_config().unwrap().port, 8547);
@@ -1772,8 +1772,8 @@ mod tests {
 		assert_eq!(conf0.secretstore_config().unwrap().http_port, 8083);
 		assert_eq!(conf0.stratum_options().unwrap().unwrap().port, 8009);
 
-		assert_eq!(conf1.net_addresses().unwrap().0.port(), 30304);
-		assert_eq!(conf1.network_settings().unwrap().network_port, 30304);
+		assert_eq!(conf1.net_addresses().unwrap().0.port(), 60607);
+		assert_eq!(conf1.network_settings().unwrap().network_port, 60607);
 		assert_eq!(conf1.network_settings().unwrap().rpc_port, 8545);
 		assert_eq!(conf1.http_config().unwrap().port, 8545);
 		assert_eq!(conf1.ws_config().unwrap().port, 8547);
@@ -1786,22 +1786,22 @@ mod tests {
 		// Ip works
 		let conf = parse(&["parity", "--nat", "extip:1.1.1.1"]);
 		assert_eq!(conf.net_addresses().unwrap().1.unwrap().ip().to_string(), "1.1.1.1");
-		assert_eq!(conf.net_addresses().unwrap().1.unwrap().port(), 30303);
+		assert_eq!(conf.net_addresses().unwrap().1.unwrap().port(), 60606);
 
 		// Ip with port works, port is discarded
 		let conf = parse(&["parity", "--nat", "extip:192.168.1.1:123"]);
 		assert_eq!(conf.net_addresses().unwrap().1.unwrap().ip().to_string(), "192.168.1.1");
-		assert_eq!(conf.net_addresses().unwrap().1.unwrap().port(), 30303);
+		assert_eq!(conf.net_addresses().unwrap().1.unwrap().port(), 60606);
 
 		// Hostname works
 		let conf = parse(&["parity", "--nat", "extip:ethereum.org"]);
 		assert!(conf.net_addresses().unwrap().1.is_some());
-		assert_eq!(conf.net_addresses().unwrap().1.unwrap().port(), 30303);
+		assert_eq!(conf.net_addresses().unwrap().1.unwrap().port(), 60606);
 
 		// Hostname works, garbage at the end is discarded
 		let conf = parse(&["parity", "--nat", "extip:ethereum.org:whatever bla bla 123"]);
 		assert!(conf.net_addresses().unwrap().1.is_some());
-		assert_eq!(conf.net_addresses().unwrap().1.unwrap().port(), 30303);
+		assert_eq!(conf.net_addresses().unwrap().1.unwrap().port(), 60606);
 
 		// Garbage is error
 		let conf = parse(&["parity", "--nat", "extip:blabla"]);

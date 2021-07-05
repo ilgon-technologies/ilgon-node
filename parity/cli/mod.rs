@@ -419,7 +419,7 @@ usage! {
 			"--warp-barrier=[NUM]",
 			"When warp enabled never attempt regular sync before warping to block NUM.",
 
-			ARG arg_port: (u16) = 30303u16, or |c: &Config| c.network.as_ref()?.port.clone(),
+			ARG arg_port: (u16) = 60606u16, or |c: &Config| c.network.as_ref()?.port.clone(),
 			"--port=[PORT]",
 			"Override the port on which the node should listen.",
 

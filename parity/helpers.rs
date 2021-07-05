@@ -208,7 +208,7 @@ pub fn default_network_config() -> ::sync::NetworkConfiguration {
 	NetworkConfiguration {
 		config_path: Some(replace_home(&::dir::default_data_path(), "$BASE/network")),
 		net_config_path: None,
-		listen_address: Some("0.0.0.0:30303".into()),
+		listen_address: Some("0.0.0.0:60606".into()),
 		public_address: None,
 		udp_port: None,
 		nat_enabled: true,
@@ -490,8 +490,8 @@ but the first password is trimmed
 
 	#[test]
 	fn test_to_bootnodes() {
-		let one_bootnode = "enode://e731347db0521f3476e6bbbb83375dcd7133a1601425ebd15fd10f3835fd4c304fba6282087ca5a0deeafadf0aa0d4fd56c3323331901c1f38bd181c283e3e35@128.199.55.137:30303";
-		let two_bootnodes = "enode://e731347db0521f3476e6bbbb83375dcd7133a1601425ebd15fd10f3835fd4c304fba6282087ca5a0deeafadf0aa0d4fd56c3323331901c1f38bd181c283e3e35@128.199.55.137:30303,enode://e731347db0521f3476e6bbbb83375dcd7133a1601425ebd15fd10f3835fd4c304fba6282087ca5a0deeafadf0aa0d4fd56c3323331901c1f38bd181c283e3e35@128.199.55.137:30303";
+		let one_bootnode = "enode://e731347db0521f3476e6bbbb83375dcd7133a1601425ebd15fd10f3835fd4c304fba6282087ca5a0deeafadf0aa0d4fd56c3323331901c1f38bd181c283e3e35@128.199.55.137:60606";
+		let two_bootnodes = "enode://e731347db0521f3476e6bbbb83375dcd7133a1601425ebd15fd10f3835fd4c304fba6282087ca5a0deeafadf0aa0d4fd56c3323331901c1f38bd181c283e3e35@128.199.55.137:60606,enode://e731347db0521f3476e6bbbb83375dcd7133a1601425ebd15fd10f3835fd4c304fba6282087ca5a0deeafadf0aa0d4fd56c3323331901c1f38bd181c283e3e35@128.199.55.137:60606";
 
 		assert_eq!(to_bootnodes(&Some("".into())), Ok(vec![]));
 		assert_eq!(to_bootnodes(&None), Ok(vec![]));
