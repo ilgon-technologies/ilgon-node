@@ -405,7 +405,7 @@ fn rpc_eth_mining() {
 #[test]
 fn rpc_eth_gas_price() {
 	let request = r#"{"jsonrpc": "2.0", "method": "eth_gasPrice", "params": [], "id": 1}"#;
-	let response = r#"{"jsonrpc":"2.0","result":"0x4a817c800","id":1}"#;
+	let response = r#"{"jsonrpc":"2.0","result":"0x9184e72a000","id":1}"#;
 
 	assert_eq!(EthTester::default().io.handle_request_sync(request), Some(response.to_owned()));
 }
