@@ -351,7 +351,7 @@ pub fn default_gas_price<C, M>(client: &C, miner: &M, percentile: usize) -> U256
 	C: BlockChainClient,
 	M: MinerService,
 {
-	client.gas_price_corpus(100).percentile(percentile).cloned().unwrap_or_else(|| miner.sensible_gas_price())
+	U256::from(10000000000000u64)
 }
 
 /// Convert RPC confirmation payload to signer confirmation payload.
